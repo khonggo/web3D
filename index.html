@@ -209,7 +209,7 @@
 
                 const data = await response.json();
                 if (data.values) {
-                    sheetData = data.values;
+                    sheetData = data.values.slice(1);
                     init();
                     animate();
                     document.getElementById('loadingText').style.display = 'none';
@@ -226,7 +226,7 @@
 
             scene = new THREE.Scene();
 
-            for (let i = 1; i < sheetData.length; i++) {
+            for (let i = 0; i < sheetData.length; i++) {
             const element = document.createElement('div');
             element.className = 'element';
             element.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')';
