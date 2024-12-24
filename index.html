@@ -280,8 +280,8 @@
             objects.push(objectCSS);
 
             const object = new THREE.Object3D();
-            const col = i % 18; 
-            const row = Math.floor(i / 18); 
+            const col = i % 20; 
+            const row = Math.floor(i / 20); 
             object.position.x = (col * 140) - 1330; 
             object.position.y = -(row * 180) + 990; 
             targets.table.push(object);
@@ -299,15 +299,28 @@
             }
 
             for (let i = 0, l = objects.length; i < l; i++) {
-                const theta = i * 0.175 + Math.PI;
-                const y = -(i * 8) + 450;
-                const object = new THREE.Object3D();
-                object.position.setFromCylindricalCoords(900, theta, y);
-                vector.x = object.position.x * 2;
-                vector.y = object.position.y;
-                vector.z = object.position.z * 2;
-                object.lookAt(vector);
-                targets.helix.push(object);
+                const theta1 = i * 0.175 + Math.PI; 
+                const y1 = -(i * 8) + 450; 
+                const object1 = new THREE.Object3D();
+                object1.position.setFromCylindricalCoords(900, theta1, y1); 
+
+                const theta2 = i * 0.175 + Math.PI + Math.PI; 
+                const y2 = -(i * 8) + 450 + 1200; 
+                const object2 = new THREE.Object3D();
+                object2.position.setFromCylindricalCoords(900, theta2, y2); 
+
+                vector.x = object1.position.x * 2;
+                vector.y = object1.position.y;
+                vector.z = object1.position.z * 2;
+                object1.lookAt(vector);
+
+                vector.x = object2.position.x * 2;
+                vector.y = object2.position.y;
+                vector.z = object2.position.z * 2;
+                object2.lookAt(vector);
+
+                targets.helix.push(object1);
+                targets.helix.push(object2);
             }
 
             for (let i = 0; i < objects.length; i++) {
